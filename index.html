@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel">
     <title>LTWeather</title>
 </head>
 <body>
     <div class="card">
         <div class="busca">
-            <input type="text" placeholder="Informe a cidade" spellcheck="false">
-            <button><img src="imagens/search.png" alt=""></button>
+            <input id="barra-pesquisa" type="text" placeholder="Informe a cidade" spellcheck="false">
+            <button id="btn-pesquisa" type="submit"><img src="imagens/search.png" alt=""></button>
         </div>
         <div class="tempo">
             <img src="imagens/clear.png" class="icone-tempo">
