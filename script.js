@@ -15,16 +15,17 @@ async function recebeDadosDoClima(cidade) {
   const urlApi =
     "https://api.openweathermap.org/data/2.5/weather?units=metric&lang=pt_br";
 
-  const resposta = await fetch(`${urlApi}&appid=${chaveApi}&q=${cidade}`);
-  let data = await resposta.json();
-
-  return data;
+  try {
+    const resposta = await fetch(`${urlApi}&appid=${chaveApi}&q=${cidade}`);
+    let data = await resposta.json();
+    return data;
+  } catch (error){
+    recebeDadosDoClima(cidade);
+  }
 }
 
 async function mostrarDadosDoClima(cidade) {
   const data = await recebeDadosDoClima(cidade);
-
-  console.log(data);
 
   temperatura = data.main.temp;
   temperaturaInt = Math.trunc(temperatura);
@@ -52,10 +53,14 @@ btnPesquisa.addEventListener("click", (e) => {
 
   cidade = barraDePesquisa.value;
 
-  card.classList.toggle('grande');
+  if(!cidade){
+    alert("Adicione o nome da cidade");
+    return;
+  }
+
+  if(!card.classList.contains('grande')) {
+   card.classList.toggle('grande');
+  }
 
   mostrarDadosDoClima(cidade);
-
-  console.log(cidade);
-
 });
