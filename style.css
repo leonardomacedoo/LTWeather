@@ -7,15 +7,29 @@
 body{
     background: #222;
 }
-.card{
+.card.grande{
     width: 90%;
     max-width: 500px;
+    max-height: 2000px;
     background: linear-gradient(30deg, #023859, #1D4859, #37748C, #D9CBBA, #F2A679);
     color: #fff;
     margin: 8vh auto;
     border-radius: 20px;
     padding: 40px 35px;
     text-align: center;
+}
+.card{
+    width: 90%;
+    max-width: 500px;
+    max-height: 140px;
+    background: linear-gradient(30deg, #023859, #1D4859, #37748C, #D9CBBA, #F2A679);
+    color: #fff;
+    margin: 8vh auto;
+    border-radius: 20px;
+    padding: 40px 35px;
+    text-align: center;
+    overflow: hidden;
+    transition: all 1.7s ease-in-out;
 }
 .busca{
     width: 100%;

@@ -6,6 +6,10 @@ const temperaturaElemento = document.querySelector(".temperatura");
 const umidadeElemento = document.querySelector(".umidade");
 const ventoElemento = document.querySelector(".vento");
 
+const card = document.querySelector(".card");
+const tempo = document.querySelector(".tempo");
+
+
 async function recebeDadosDoClima(cidade) {
   const chaveApi = "f87f9bafe1b3b5d2fcf29e6edce21f98";
   const urlApi =
@@ -30,6 +34,8 @@ async function mostrarDadosDoClima(cidade) {
     temperatura = temperatura.toFixed(1);
   } else if (temperaturaFloat < 0.1) {
     temperatura = temperatura.toFixed(0);
+  } else {
+    temperatura = temperatura.toFixed(0);
   }
 
   umidade = data.main.humidity;
@@ -46,5 +52,10 @@ btnPesquisa.addEventListener("click", (e) => {
 
   cidade = barraDePesquisa.value;
 
+  card.classList.toggle('grande');
+
   mostrarDadosDoClima(cidade);
+
+  console.log(cidade);
+
 });
