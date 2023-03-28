@@ -95,3 +95,39 @@ body{
     margin-top: -6px;
 
 }
+
+@media (max-width: 450px) {
+
+    .card, .card.grande { 
+        padding: 40px 10px;
+    }
+    
+    .busca input {
+        width: 100%;        
+    }
+}
+
+@media (max-width: 250px) {
+
+    .card, .card.grande {
+        width: 100%; 
+        padding: 30px 10px;
+    }
+
+    .busca {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .busca input {
+        width: 100%;  
+        margin: 0;
+        margin-bottom: 10px;      
+    }
+
+    .busca button {
+        width: 40px;
+        height: 40px;
+    }
+}
