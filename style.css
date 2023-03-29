@@ -1,133 +1,148 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Abel;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Abel;
 }
-body{
-    background: #222;
+body {
+  background: #222;
 }
-.card.grande{
-    width: 90%;
-    max-width: 500px;
-    max-height: 2000px;
-    background: linear-gradient(30deg, #023859, #1D4859, #37748C, #D9CBBA, #F2A679);
-    color: #fff;
-    margin: 8vh auto;
-    border-radius: 20px;
-    padding: 40px 35px;
-    text-align: center;
+.card.grande {
+  width: 90%;
+  max-width: 500px;
+  max-height: 2000px;
+  background: linear-gradient(
+    30deg,
+    #023859,
+    #1d4859,
+    #37748c,
+    #d9cbba,
+    #f2a679
+  );
+  color: #fff;
+  margin: 8vh auto;
+  border-radius: 20px;
+  padding: 40px 35px;
+  text-align: center;
 }
-.card{
-    width: 90%;
-    max-width: 500px;
-    max-height: 140px;
-    background: linear-gradient(30deg, #023859, #1D4859, #37748C, #D9CBBA, #F2A679);
-    color: #fff;
-    margin: 8vh auto;
-    border-radius: 20px;
-    padding: 40px 35px;
-    text-align: center;
-    overflow: hidden;
-    transition: all 1.7s ease-in-out;
+.card {
+  width: 90%;
+  max-width: 500px;
+  max-height: 140px;
+  background: linear-gradient(
+    30deg,
+    #023859,
+    #1d4859,
+    #37748c,
+    #d9cbba,
+    #f2a679
+  );
+  color: #fff;
+  margin: 8vh auto;
+  border-radius: 20px;
+  padding: 40px 35px;
+  text-align: center;
+  overflow: hidden;
+  transition: all 1.7s ease-in-out;
 }
-.busca{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.busca {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.busca input{
-    border: 0;
-    outline: 0;
-    background: #ebfffc;
-    color: #555;
-    padding: 10px 25px;
-    height: 60px;
-    border-radius: 30px;
-    flex: 1;
-    margin-right: 16px;
-    font-size: 18px;
+.busca input {
+  border: 0;
+  outline: 0;
+  background: #ebfffc;
+  color: #555;
+  padding: 10px 25px;
+  height: 60px;
+  border-radius: 30px;
+  flex: 1;
+  margin-right: 16px;
+  font-size: 18px;
 }
-.busca button{
-    border: 0;
-    outline: 0;
-    background: #ebfffc;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    cursor: pointer;
+.busca button {
+  border: 0;
+  outline: 0;
+  background: #ebfffc;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
 }
-.busca button img{
-    width: 40%;
+.busca button img {
+  width: 40%;
 }
-.icone-tempo{
-    width: 170px;
-    margin-top: 30px;
+.icone-tempo {
+  width: 170px;
+  margin-top: 30px;
 }
-.tempo h1{
-    font-size: 80px;
-    font-weight: 500;
+.tempo h1 {
+  font-size: 80px;
+  font-weight: 500;
 }
-.tempo h2{
-    font-size: 45px;
-    font-weight: 400;
-    margin-top: -10px;
+.tempo h2 {
+  font-size: 45px;
+  font-weight: 400;
+  margin-top: -10px;
 }
-.detalhes{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    margin-top: 50px;
+.detalhes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin-top: 50px;
 }
-.col{
-    display: flex;
-    align-items: center;
-    text-align: left;
+.col {
+  display: flex;
+  align-items: center;
+  text-align: left;
 }
-.col img{
-    width: 40px;
-    margin-right: 10px;
+.col img {
+  width: 40px;
+  margin-right: 10px;
 }
-.umidade, .vento{
-    font-size: 28px;
-    margin-top: -6px;
-
+.umidade,
+.vento {
+  font-size: 28px;
+  margin-top: -6px;
 }
 
 @media (max-width: 450px) {
+  .card,
+  .card.grande {
+    padding: 40px 10px;
+  }
 
-    .card, .card.grande { 
-        padding: 40px 10px;
-    }
-    
-    .busca input {
-        width: 100%;        
-    }
+  .busca input {
+    width: 100%;
+  }
 }
 
 @media (max-width: 250px) {
+  .card,
+  .card.grande {
+    width: 100%;
+    padding: 30px 10px;
+  }
 
-    .card, .card.grande {
-        width: 100%; 
-        padding: 30px 10px;
-    }
+  .busca {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .busca {
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    
-    .busca input {
-        width: 100%;  
-        margin: 0;
-        margin-bottom: 10px;      
-    }
+  .busca input {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 10px;
+    text-align: center;
+  }
 
-    .busca button {
-        width: 40px;
-        height: 40px;
-    }
+  .busca button {
+    width: 40px;
+    height: 40px;
+  }
 }
