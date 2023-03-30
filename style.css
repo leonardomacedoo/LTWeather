@@ -110,23 +110,20 @@ body {
   margin-top: -6px;
 }
 
-@media (max-width: 450px) {
-  .card,
-  .card.grande {
-    padding: 40px 10px;
-  }
 
-  .busca input {
-    width: 100%;
-  }
+@media (max-width: 650px) {
+    .card, 
+    .card.grande {
+        width: 100%;
+        padding: 30px 10px;
+    }
+
+    .detalhes {
+        justify-content: space-around;
+    }
 }
 
-@media (max-width: 250px) {
-  .card,
-  .card.grande {
-    width: 100%;
-    padding: 30px 10px;
-  }
+@media (max-width: 350px) {
 
   .busca {
     flex-direction: column;
@@ -144,5 +141,48 @@ body {
   .busca button {
     width: 40px;
     height: 40px;
+  }
+
+  .icone-tempo {
+    width: 50%;
+  }
+
+  .tempo h1 {
+    font-size: 2rem;
+  }
+
+  .tempo h2 {
+    display: none;
+  }
+
+  .detalhes {
+    flex-flow: column;
+    margin-top: 20px;
+  }
+
+  .col {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /**
+  Selects the first element with the class .col
+  */
+  .col:first-of-type {
+    margin-bottom: 20px;
+  }
+
+  .col img {
+    width: 40px;
+  }
+
+  .secao-umidade:last-child,
+  .secao-vento:last-child {
+    font-size: 1rem;
+  }
+
+  .umidade,
+  .vento {
+    font-size: 1.2rem;
   }
 }
