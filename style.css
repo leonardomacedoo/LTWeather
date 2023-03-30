@@ -4,6 +4,11 @@
   box-sizing: border-box;
   font-family: Abel;
 }
+
+body {
+    background-color: #19202e;
+}
+
 .card.grande {
   width: 100%;
   max-width: 500px;
