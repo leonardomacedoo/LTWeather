@@ -4,11 +4,8 @@
   box-sizing: border-box;
   font-family: Abel;
 }
-body {
-  background: #222;
-}
 .card.grande {
-  width: 90%;
+  width: 100%;
   max-width: 500px;
   max-height: 2000px;
   background: linear-gradient(
@@ -26,7 +23,7 @@ body {
   text-align: center;
 }
 .card {
-  width: 90%;
+  width: 100%;
   max-width: 500px;
   max-height: 140px;
   background: linear-gradient(
@@ -110,21 +107,13 @@ body {
   margin-top: -6px;
 }
 
-
 @media (max-width: 650px) {
-    .card, 
-    .card.grande {
-        width: 100%;
-        padding: 30px 10px;
-    }
-
-    .detalhes {
-        justify-content: space-around;
-    }
+  .detalhes {
+    justify-content: space-around;
+  }
 }
 
-@media (max-width: 350px) {
-
+@media (max-width: 390px) {
   .busca {
     flex-direction: column;
     justify-content: center;
