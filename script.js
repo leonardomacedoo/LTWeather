@@ -9,6 +9,7 @@ const ventoElemento = document.querySelector(".vento");
 
 const card = document.querySelector(".card");
 const tempo = document.querySelector(".tempo");
+const animacaoCarregamento = document.getElementById("animacao-carregamento")
 
 async function recebeDadosDoClima(cidade) {
   const chaveApi = "f87f9bafe1b3b5d2fcf29e6edce21f98";
@@ -30,30 +31,34 @@ function definirIconeClima(infoClima) {
 
   if (infoClima.id < 300) {
     caminhoIcone = `imagens/${diaOuNoite}storm.png`;
-  }
-  if (infoClima.id < 400) {
-    caminhoIcone = `imagens/${diaOuNoite}drizzle.png`;
+    caminhoVideo = `videos/storm.mp4`;
   }
   if (infoClima.id < 500) {
-    caminhoIcone = `imagens/rain.png`;
+    caminhoIcone = `imagens/${diaOuNoite}drizzle.png`;
+    caminhoVideo = `videos/drizzle.mp4`;
   }
   if (infoClima.id < 600) {
-    caminhoIcone = `imagens/snow.png`;
+    caminhoIcone = `imagens/rain.png`;
+    caminhoVideo = `videos/${diaOuNoite}rain.mp4`;
   }
   if (infoClima.id < 700) {
-    caminhoIcone = `imagens/${diaOuNoite}storm.png`;
+    caminhoIcone = `imagens/snow.png`;
+    caminhoVideo = `videos/snow.mp4`;
   }
   if (infoClima.id < 800) {
     caminhoIcone = `imagens/mist.png`;
+    caminhoVideo = `videos/mist.mp4`;
   }
   if (infoClima.id == 800) {
     caminhoIcone = `imagens/${diaOuNoite}clear.png`;
+    caminhoVideo = `videos/${diaOuNoite}clear.mp4`;
   }
   if (infoClima.id > 800) {
     caminhoIcone = `imagens/${diaOuNoite}clouds.png`;
+    caminhoVideo = `videos/${diaOuNoite}clouds.mp4`;
   }
 
-  return caminhoIcone;
+  return [caminhoIcone, caminhoVideo];
 }
 
 async function mostrarDadosDoClima(cidade) {
@@ -71,11 +76,13 @@ async function mostrarDadosDoClima(cidade) {
     temperatura = temperatura.toFixed(0);
   }
 
-  const caminhoIcone = definirIconeClima(data.weather[0]);
+  const [caminhoIcone, caminhoVideo] = definirIconeClima(data.weather[0]);
+  
+  const video = document.getElementById("video-bg");
+  video.setAttribute("src", caminhoVideo);
 
   umidade = data.main.humidity;
   velocidadeVento = data.wind.speed;
-
   cidadeElemento.textContent = data.name;
   iconeElemento.setAttribute("src", caminhoIcone);
   temperaturaElemento.textContent = temperatura + "°C";
@@ -83,7 +90,12 @@ async function mostrarDadosDoClima(cidade) {
   ventoElemento.textContent = data.wind.speed + " km/h";
 }
 
+// function definirEstadoAnimação(){
+//   if(animacaoCarregamento.classList.contains)
+//}
+
 btnPesquisa.addEventListener("click", (e) => {
+  
   e.preventDefault();
 
   cidade = barraDePesquisa.value;
@@ -93,7 +105,9 @@ btnPesquisa.addEventListener("click", (e) => {
     return;
   }
 
-  if (!card.classList.contains("grande")) {
+  
+
+  if (!card.classList.contains("grande")) {    
     card.classList.toggle("grande");
   }
 
