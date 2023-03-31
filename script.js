@@ -21,10 +21,9 @@ async function recebeDadosDoClima(cidade) {
   try {
     const resposta = await fetch(`${urlApi}&appid=${chaveApi}&q=${cidade}`);
     let data = await resposta.json();
-    console.log(data.weather[0].id, data);
     return data;
   } catch (error) {
-    recebeDadosDoClima(cidade);
+    alert("Digite a cidade novamente")
   }
 }
 
