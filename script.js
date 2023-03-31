@@ -1,6 +1,8 @@
 const barraDePesquisa = document.getElementById("barra-pesquisa");
 const btnPesquisa = document.getElementById("btn-pesquisa");
 
+const divTempo = document.querySelector(".tempo");
+const divDetalhes = document.querySelector(".detalhes");
 const cidadeElemento = document.querySelector(".cidade");
 const iconeElemento = document.querySelector(".icone-tempo");
 const temperaturaElemento = document.querySelector(".temperatura");
@@ -9,7 +11,7 @@ const ventoElemento = document.querySelector(".vento");
 
 const card = document.querySelector(".card");
 const tempo = document.querySelector(".tempo");
-const animacaoCarregamento = document.getElementById("animacao-carregamento")
+const animacaoCarregamento = document.querySelector(".lds-ellipsis");
 
 async function recebeDadosDoClima(cidade) {
   const chaveApi = "f87f9bafe1b3b5d2fcf29e6edce21f98";
@@ -77,7 +79,7 @@ async function mostrarDadosDoClima(cidade) {
   }
 
   const [caminhoIcone, caminhoVideo] = definirIconeClima(data.weather[0]);
-  
+
   const video = document.getElementById("video-bg");
   video.setAttribute("src", caminhoVideo);
 
@@ -90,13 +92,10 @@ async function mostrarDadosDoClima(cidade) {
   ventoElemento.textContent = data.wind.speed + " km/h";
 }
 
-// function definirEstadoAnimação(){
-//   if(animacaoCarregamento.classList.contains)
-//}
-
 btnPesquisa.addEventListener("click", (e) => {
-  
   e.preventDefault();
+
+  animacaoCarregamento.classList.toggle("visivel");
 
   cidade = barraDePesquisa.value;
 
@@ -105,11 +104,14 @@ btnPesquisa.addEventListener("click", (e) => {
     return;
   }
 
-  
-
-  if (!card.classList.contains("grande")) {    
+  if (!card.classList.contains("grande")) {
     card.classList.toggle("grande");
   }
 
-  mostrarDadosDoClima(cidade);
+  setTimeout(function () {
+    animacaoCarregamento.classList.toggle("visivel");
+    divTempo.classList ="block";
+    divDetalhes.classList += " flex";
+    mostrarDadosDoClima(cidade);
+  }, 3000);
 });
