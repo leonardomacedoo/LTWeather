@@ -1,45 +1,55 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="imagens/favicon.ico" type="image/x-icon" />
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abel">
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Abel" />
     <title>LTWeather</title>
-</head>
-    <body>
+  </head>
+  <body>
     <video id="video-bg" autoplay loop muted></video>
-    <div class="card">
+    <div class="container">
+      <div class="card">
         <form class="busca">
-            <input id="barra-pesquisa" type="text" placeholder="Informe a cidade" spellcheck="false">
-            <button id="btn-pesquisa" type="submit"><img src="imagens/search.png" alt=""></button>
+          <input
+            id="barra-pesquisa"
+            type="text"
+            placeholder="Informe a cidade"
+            spellcheck="false" />
+          <button id="btn-pesquisa" type="submit">
+            <img src="imagens/search.png" alt="" />
+          </button>
         </form>
-        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-        <div class="tempo">
-            <img src="" class="icone-tempo">
-            <h1 class="temperatura"></h1>
-            <h2 class="cidade"></h2>
-            <div class="detalhes">
-                <div class="col">
-                    <img src="imagens/humidity.png">
-                    <div class="secao-umidade">
-                        <p class="umidade"></p>
-                        <p>Umidade</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <img src="imagens/wind.png">
-                    <div class="secao-vento">
-                        <p class="vento"></p>
-                        <p>Velocidade do vento</p>
-                    </div>
-                </div>
-            </div>
+        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div>
         </div>
+        <div class="tempo">
+          <img src="" class="icone-tempo" />
+          <h1 class="temperatura"></h1>
+          <h2 class="cidade"></h2>
+          <div class="detalhes">
+            <div class="col">
+              <img src="imagens/humidity.png" />
+              <div class="secao-umidade">
+                <p class="umidade"></p>
+                <p>Umidade</p>
+              </div>
+            </div>
+            <div class="col">
+              <img src="imagens/wind.png" />
+              <div class="secao-vento">
+                <p class="vento"></p>
+                <p>Velocidade do vento</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-</body>
+  </body>
 </html>
