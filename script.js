@@ -1,3 +1,35 @@
+const getUserLocation = () => {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      reject(new Error("Geolocation not supported"));
+    } else {
+      navigator.geolocation.getCurrentPosition(
+        (position) =>
+          resolve({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          }),
+        (error) => reject(error)
+      );
+    }
+  });
+};
+
+const apiKey = "OPENCAGEDATA_API_KEY";
+const apiUrl = "https://api.opencagedata.com/geocode/v1/json";
+
+// function to fetch city name based on latitude and longitude
+async function getCityName(lat, lng) {
+  const url = `${apiUrl}?q=${lat}+${lng}&key=${apiKey}&language=en&pretty=1`;
+  const response = await fetch(url);
+  const data = await response.json();
+  if (data.results && data.results.length > 0) {
+    return data.results[0].components.city || data.results[0].components.town;
+  } else {
+    throw new Error("City not found");
+  }
+}
+
 const barraDePesquisa = document.getElementById("barra-pesquisa");
 const btnPesquisa = document.getElementById("btn-pesquisa");
 
@@ -6,12 +38,13 @@ const divDetalhes = document.querySelector(".detalhes");
 const cidadeElemento = document.querySelector(".cidade");
 const iconeElemento = document.querySelector(".icone-tempo");
 const temperaturaElemento = document.querySelector(".temperatura");
+const ImgUmidade = document.querySelector("#img-umidade");
 const umidadeElemento = document.querySelector(".umidade");
+const ImgVento = document.querySelector("#img-vento");
 const ventoElemento = document.querySelector(".vento");
 
 const card = document.querySelector(".card");
 const tempo = document.querySelector(".tempo");
-const animacaoCarregamento = document.querySelector(".lds-ellipsis");
 
 async function recebeDadosDoClima(cidade) {
   const chaveApi = "f87f9bafe1b3b5d2fcf29e6edce21f98";
@@ -23,7 +56,7 @@ async function recebeDadosDoClima(cidade) {
     let data = await resposta.json();
     return data;
   } catch (error) {
-    alert("Digite a cidade novamente")
+    alert("Digite a cidade novamente");
   }
 }
 
@@ -82,7 +115,9 @@ async function mostrarDadosDoClima(cidade) {
   const video = document.getElementById("video-bg");
   video.setAttribute("src", caminhoVideo);
 
+  ImgUmidade.setAttribute("src", "imagens/humidity.png")
   umidade = data.main.humidity;
+  ImgVento.setAttribute("src", "imagens/wind.png")
   velocidadeVento = data.wind.speed;
   cidadeElemento.textContent = data.name;
   iconeElemento.setAttribute("src", caminhoIcone);
@@ -91,10 +126,18 @@ async function mostrarDadosDoClima(cidade) {
   ventoElemento.textContent = data.wind.speed + " km/h";
 }
 
+document.addEventListener("DOMContentLoaded", function (event) {
+  getUserLocation()
+    .then((location) => getCityName(location.lat, location.lng))
+    .then((cityName) => { 
+      mostrarDadosDoClima(cityName)
+      tempo.classList.toggle("empty");
+    })
+    .catch((error) => console.error(error));
+});
+
 btnPesquisa.addEventListener("click", (e) => {
   e.preventDefault();
-
-  animacaoCarregamento.classList.toggle("visivel");
 
   cidade = barraDePesquisa.value;
 
@@ -107,10 +150,5 @@ btnPesquisa.addEventListener("click", (e) => {
     card.classList.toggle("grande");
   }
 
-  setTimeout(function () {
-    animacaoCarregamento.classList.toggle("visivel");
-    divTempo.classList ="block";
-    divDetalhes.classList += " flex";
-    mostrarDadosDoClima(cidade);
-  }, 3000);
+  mostrarDadosDoClima(cidade);
 });
