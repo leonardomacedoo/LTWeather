@@ -4,12 +4,15 @@ const getUserLocation = () => {
       reject(new Error("Geolocation not supported"));
     } else {
       navigator.geolocation.getCurrentPosition(
-        (position) =>
+        (position) => 
           resolve({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           }),
-        (error) => reject(error)
+        (reject) => {
+          mostrarDadosDoClima("brasilia");
+          tempo.classList.toggle("empty");
+        }
       );
     }
   });
@@ -42,18 +45,22 @@ const ImgUmidade = document.querySelector("#img-umidade");
 const umidadeElemento = document.querySelector(".umidade");
 const ImgVento = document.querySelector("#img-vento");
 const ventoElemento = document.querySelector(".vento");
+const descUmidade = document.querySelector("#desc-umidade");
+const descVento = document.querySelector("#desc-vento");
+const descricao = document.querySelector("#descricao");
 
 const card = document.querySelector(".card");
 const tempo = document.querySelector(".tempo");
 
 async function recebeDadosDoClima(cidade) {
-  const chaveApi = "f87f9bafe1b3b5d2fcf29e6edce21f98";
+  const chaveApi = "OPENWEATHERMAP_API_KEY";
   const urlApi =
     "https://api.openweathermap.org/data/2.5/weather?units=metric&lang=pt_br";
 
   try {
     const resposta = await fetch(`${urlApi}&appid=${chaveApi}&q=${cidade}`);
     let data = await resposta.json();
+    console.log(data);
     return data;
   } catch (error) {
     alert("Digite a cidade novamente");
@@ -62,32 +69,32 @@ async function recebeDadosDoClima(cidade) {
 
 function definirIconeClima(infoClima) {
   let diaOuNoite = infoClima.icon.endsWith("n") ? `night-` : "";
-
+  
   if (infoClima.id < 300) {
     caminhoIcone = `imagens/${diaOuNoite}storm.png`;
     caminhoVideo = `videos/storm.mp4`;
   }
-  if (infoClima.id < 500) {
+  else if (infoClima.id < 500) {
     caminhoIcone = `imagens/${diaOuNoite}drizzle.png`;
     caminhoVideo = `videos/drizzle.mp4`;
   }
-  if (infoClima.id < 600) {
+  else if (infoClima.id < 600) {
     caminhoIcone = `imagens/rain.png`;
     caminhoVideo = `videos/${diaOuNoite}rain.mp4`;
   }
-  if (infoClima.id < 700) {
+  else if (infoClima.id < 700) {
     caminhoIcone = `imagens/snow.png`;
     caminhoVideo = `videos/snow.mp4`;
   }
-  if (infoClima.id < 800) {
+  else if (infoClima.id < 800) {
     caminhoIcone = `imagens/mist.png`;
     caminhoVideo = `videos/mist.mp4`;
   }
-  if (infoClima.id == 800) {
+  else if (infoClima.id == 800) {
     caminhoIcone = `imagens/${diaOuNoite}clear.png`;
     caminhoVideo = `videos/${diaOuNoite}clear.mp4`;
   }
-  if (infoClima.id > 800) {
+  else if (infoClima.id > 800) {
     caminhoIcone = `imagens/${diaOuNoite}clouds.png`;
     caminhoVideo = `videos/${diaOuNoite}clouds.mp4`;
   }
@@ -123,7 +130,10 @@ async function mostrarDadosDoClima(cidade) {
   iconeElemento.setAttribute("src", caminhoIcone);
   temperaturaElemento.textContent = temperatura + "°C";
   umidadeElemento.textContent = data.main.humidity + "%";
+  descUmidade.textContent = "Umidade";
   ventoElemento.textContent = data.wind.speed + " km/h";
+  descVento.textContent = "Velocidade Vento";
+  descricao.textContent = data.weather[0].description;
 }
 
 document.addEventListener("DOMContentLoaded", function (event) {
@@ -139,15 +149,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
 btnPesquisa.addEventListener("click", (e) => {
   e.preventDefault();
 
+  if(tempo.classList.contains("empty")){
+    tempo.classList.remove("empty");
+  }
+
   cidade = barraDePesquisa.value;
 
   if (!cidade) {
     alert("Adicione o nome da cidade");
     return;
-  }
-
-  if (!card.classList.contains("grande")) {
-    card.classList.toggle("grande");
   }
 
   mostrarDadosDoClima(cidade);
