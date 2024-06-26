@@ -18,7 +18,7 @@ const getUserLocation = () => {
   });
 };
 
-const apiKey = "OPENCAGEDATA_API_KEY";
+const apiKey = "885c238e71264478a9ab1cac1a571d54";
 const apiUrl = "https://api.opencagedata.com/geocode/v1/json";
 
 // function to fetch city name based on latitude and longitude
@@ -53,7 +53,7 @@ const card = document.querySelector(".card");
 const tempo = document.querySelector(".tempo");
 
 async function recebeDadosDoClima(cidade) {
-  const chaveApi = "OPENWEATHERMAP_API_KEY";
+  const chaveApi = "7f0a68ce9e7bf5964406feb0d5dc99e6";
   const urlApi =
     "https://api.openweathermap.org/data/2.5/weather?units=metric&lang=pt_br";
 
